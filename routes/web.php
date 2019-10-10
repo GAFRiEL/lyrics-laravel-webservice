@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::prefix('Lyrics')->name('lyrics.')->middleware('auth')->group(function () {
+
+    /* Main Page */
+    Route::get('/', 'HomeController@index')->name('home');
+
+
+});
