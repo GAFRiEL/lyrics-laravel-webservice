@@ -11,16 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// home
+Route::get('/', 'HomeController@index')->name('home');
+// About-us
+Route::get('/about', 'HomeController@about')->name('about-us');
+// Search
+Route::get('/search', 'HomeController@search')->name('search');
+// Artist
+Route::prefix('artist')->name('artist.')->group(function () {
+    Route::get('/list', 'Page\ArtistController@list')->name('list');
+    Route::get('/read', 'Page\ArtistController@read')->name('read');
+});
+// Genre
+Route::prefix('genre')->name('genre.')->group(function () {
+    Route::get('/list', 'Page\GenreController@list')->name('list');
+    Route::get('/read', 'Page\GenreController@read')->name('read');
+});
+// Song
+Route::prefix('song')->name('song.')->group(function () {
+    Route::get('/list', 'Page\SongController@list')->name('list');
+    Route::get('/read', 'Page\SongController@read')->name('read');
 });
 
 Auth::routes();
 
-Route::prefix('Lyrics')->name('lyrics.')->middleware('auth')->group(function () {
-
-    /* Main Page */
-    Route::get('/', 'HomeController@index')->name('home');
-
-
-});
