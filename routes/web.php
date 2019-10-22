@@ -11,12 +11,12 @@
 |
 */
 
-// home
-Route::get('/', 'HomeController@index')->name('home');
+// Home
+Route::get('/', 'Page\HomeController@index')->name('home');
 // About-us
-Route::get('/about', 'HomeController@about')->name('about-us');
+Route::get('/about', 'Page\HomeController@about')->name('about-us');
 // Search
-Route::get('/search', 'HomeController@search')->name('search');
+Route::get('/search', 'Page\HomeController@search')->name('search');
 // Artist
 Route::prefix('artist')->name('artist.')->group(function () {
     Route::get('/list', 'Page\ArtistController@list')->name('list');
@@ -35,3 +35,7 @@ Route::prefix('song')->name('song.')->group(function () {
 
 Auth::routes();
 
+// Admin
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/', 'Admin\HomeController@index')->name('home');
+});

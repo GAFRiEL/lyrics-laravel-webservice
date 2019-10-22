@@ -6,6 +6,21 @@
 
 <div class="container">
 
+    <div class="jumbotron alert-primary">
+        <h1 class="display-3">Hello!</h1>
+        <p class="lead">
+            This website is made by student of smkn 2 balikpapan
+        </p>
+        <hr class="my-2">
+        <p>
+            Are you an admin?
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ route('admin.home') }}" role="button">Login</a>
+        </p>
+    </div>
+
+
     <table class="table table-borderless">
         <thead>
             <tr>
@@ -37,11 +52,6 @@
             </tr>
         </tbody>
     </table> <br>
-
-    <h3>
-        Are you an admin? <br> 
-        <a href="{{ route('login') }}">Login Here</a>
-    </h3>
 
 </div>
 

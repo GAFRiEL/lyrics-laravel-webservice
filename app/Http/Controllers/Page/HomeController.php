@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\page;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 use App\Song;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('guest.page.home');
+        $data = [
+            'data' => Song::paginate(15)
+        ];
+
+        return view('guest.page.home', $data);
     }
 
     public function about()
