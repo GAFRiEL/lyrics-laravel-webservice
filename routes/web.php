@@ -33,9 +33,20 @@ Route::prefix('song')->name('song.')->group(function () {
     Route::get('/read', 'Page\SongController@read')->name('read');
 });
 
-Auth::routes();
+Auth::routes([
+    'register'  => false,
+    'reset'     => false,
+    'verify'    => false
+]);
 
 // Admin
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    // Home
     Route::get('/', 'Admin\HomeController@index')->name('home');
+    // Artist
+    Route::prefix('artist')->name('artist.')->group(function () {
+        Route::get('/list', 'Admin\ArtistController@list')->name('list');
+        Route::get('/read', 'Admin\ArtistController@read')->name('read');
+        Route::post('/edit', 'Admin\ArtistController@edit')->name('edit');
+    }); 
 });
