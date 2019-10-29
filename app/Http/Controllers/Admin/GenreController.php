@@ -4,30 +4,30 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Artist;
+use App\Genre;
 
-class ArtistController extends Controller
+class GenreController extends Controller
 {
     public function list() {
         $data = [
-            'data' => Artist::get()
+            'data' => Genre::get()
         ];
 
-        return view('admin.page.artist.list', $data);
+        return view('admin.page.genre.list', $data);
     }
 
     public function read() {
         if (request('id')) {
-            $artist = Artist::find(request('id'));
+            $genre = Genre::find(request('id'));
         } else {
-            $artist = [];
+            $genre = [];
         };
 
         $data = [
-            'data' => $artist,
+            'data' => $genre,
         ];
 
-        return view('admin.page.artist.read', $data);
+        return view('admin.page.genre.read', $data);
     }
 
     public function add()
@@ -36,27 +36,27 @@ class ArtistController extends Controller
             'data' => null
         ];
 
-        return view('admin.page.artist.add', $data);
+        return view('admin.page.genre.add', $data);
     }
 
     public function edit() {
         if (request('id')) {
-            $artist = Artist::find(request('id'));
+            $genre = Genre::find(request('id'));
         } else {
-            $artist = [];
+            $genre = [];
         };
 
         $data = [
-            'data' => $artist
+            'data' => $genre
         ];
 
-        return view('admin.page.artist.edit', $data);
+        return view('admin.page.genre.edit', $data);
     }
 
     public function create(Request $request) {
         // Validate
         $attributes = [
-            'name'    => 'Artist Name',
+            'name'    => 'Genre Name',
         ];
 
         $this->validate($request,[
@@ -64,18 +64,18 @@ class ArtistController extends Controller
         ],[],$attributes);
 
         // updating on fire
-        Artist::create([
+        Genre::create([
             'name' => request('name'),
         ]);
 
-        return redirect()->route('admin.artist.list');
+        return redirect()->route('admin.genre.list');
     }
 
     public function update(Request $request)
     {
         // Validate
         $attributes = [
-            'name'    => 'Artist Name',
+            'name'    => 'Genre Name',
         ];
 
         $this->validate($request,[
@@ -83,7 +83,7 @@ class ArtistController extends Controller
         ],[],$attributes);
 
         //updating on fire
-        Artist::find(request('id'))
+        Genre::find(request('id'))
             ->update([
                 'name' => request('name')
             ]);
@@ -93,10 +93,10 @@ class ArtistController extends Controller
 
     public function delete(Request $request) {
         if (request('id')) {
-            $data = Artist::find(request('id'));
+            $data = Genre::find(request('id'));
             $data->delete();
             
-            return redirect()->route('admin.artist.list');
+            return redirect()->route('admin.genre.list');
         } else {
             abort(404);
         };
