@@ -40,7 +40,7 @@ Auth::routes([
 ]);
 
 // Admin
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Home
     Route::get('/', 'Admin\HomeController@index')->name('home');
     // Artist
