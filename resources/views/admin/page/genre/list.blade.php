@@ -7,12 +7,12 @@
         <div class="container">
             <div class="row mb-5">
                 <h1 class="text-left col-12 font-weight-bold">
-                    Artist
+                    Genre
                 </h1>
             </div>
             <div>
                 <button class="btn btn-success">
-                    <a class="text-decoration-none text-dark" href="{{ route('admin.artist.add') }}">Add</a>
+                    <a class="text-decoration-none text-white" href="{{ route('admin.genre.add') }}">Add</a>
                 </button>
             </div>
             @if (session('alert'))
@@ -35,7 +35,7 @@
                                     </h5>
                                 </div>
                             </div>
-                            <a href="{{ route('admin.artist.read', ['id' => str_pad($item->id, 12, '0', STR_PAD_LEFT)]) }}" class="btn btn-secondary rounded-0">
+                            <a href="{{ route('admin.genre.read', ['id' => str_pad($item->id, 12, '0', STR_PAD_LEFT)]) }}" class="btn btn-secondary rounded-0">
                                 Lihat
                             </a>
                         </div>
@@ -44,7 +44,7 @@
                 @else
                     <div class="col-12">
                         <div class="alert alert-dark" role="alert">
-                            Artist belum tersedia
+                            Genre belum tersedia
                         </div>
                     </div>
                 @endif
