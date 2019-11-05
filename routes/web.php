@@ -46,7 +46,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Artist
     Route::prefix('artist')->name('artist.')->group(function () {
         Route::get('/', 'Admin\ArtistController@list')->name('list');
-        Route::get('/read', 'Admin\ArtistController@read')->name('read');
         Route::get('/add', 'Admin\ArtistController@add')->name('add');
         Route::get('/edit', 'Admin\ArtistController@edit')->name('edit');
         Route::get('/delete', 'Admin\ArtistController@delete')->name('delete');
@@ -56,11 +55,30 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Genre
     Route::prefix('genre')->name('genre.')->group(function () {
         Route::get('/', 'Admin\GenreController@list')->name('list');
-        Route::get('/read', 'Admin\GenreController@read')->name('read');
         Route::get('/add', 'Admin\GenreController@add')->name('add');
         Route::get('/edit', 'Admin\GenreController@edit')->name('edit');
         Route::get('/delete', 'Admin\GenreController@delete')->name('delete');
         Route::post('/add', 'Admin\GenreController@create')->name('create');
         Route::post('/edit', 'Admin\GenreController@update')->name('update');
+    });
+    // Album
+    Route::prefix('album')->name('album.')->group(function () {
+        Route::get('/', 'Admin\AlbumController@list')->name('list');
+        Route::get('/add', 'Admin\AlbumController@add')->name('add');
+        Route::get('/read', 'Admin\AlbumController@read')->name('read');
+        Route::get('/edit', 'Admin\AlbumController@edit')->name('edit');
+        Route::get('/delete', 'Admin\AlbumController@delete')->name('delete');
+        Route::post('/add', 'Admin\AlbumController@create')->name('create');
+        Route::post('/edit', 'Admin\AlbumController@update')->name('update');
+    });
+    // Song
+    Route::prefix('song')->name('song.')->group(function () {
+        Route::get('/', 'Admin\SongController@list')->name('list');
+        Route::get('/add', 'Admin\SongController@add')->name('add');
+        Route::get('/read', 'Admin\SongController@read')->name('read');
+        Route::get('/edit', 'Admin\SongController@edit')->name('edit');
+        Route::get('/delete', 'Admin\SongController@delete')->name('delete');
+        Route::post('/add', 'Admin\SongController@create')->name('create');
+        Route::post('/edit', 'Admin\SongController@update')->name('update');
     });
 });

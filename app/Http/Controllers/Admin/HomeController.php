@@ -8,6 +8,6 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index() {
-        return view('admin.template.pages.home');
+        return view('admin.page.home');
     }
 }

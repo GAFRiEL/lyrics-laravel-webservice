@@ -1,4 +1,4 @@
-@extends('admin.template.layouts.general')
+@extends('admin.layouts.general')
 
 @section('page')
 <!-- Begin Page Content -->
