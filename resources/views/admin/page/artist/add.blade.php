@@ -1,39 +1,32 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.general')
 
-@section('content')
-    <div id="app">
-        @include('admin.partials.header')
+@section('page')
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-        <div class="container">
-
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <form 
-                        method="post"
-                        action="{{ route('admin.artist.create') }}"
-                        >
-                        @csrf
-
-                        <div class="form-group">
-                            <label for="name">Nama Artist</label>
-                            <input
-                                id="name"
-                                type="text"
-                                name="name"
-                                class="form-control form-control-md col-md-5"
-                                placeholder="Artist Name"
-                                value="">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="Save">
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-        </div>
-
-        @include('admin.partials.footer')        
+<form class="jumbotron jumbotron-fluid row" method="post" action="{{ route('admin.artist.add') }}">
+    @csrf
+    <div class="container">
+        <input 
+            id="name"
+            type="text"
+            name="name"
+            class="display-3"
+            placeholder="Artist Name"
+            value=""
+            required>
     </div>
+    <div class="dropdown no-arrow mb-4 mr-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Action
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+            <input class="dropdown-item" type="submit" value="save">
+        </div>
+    </div>
+</form>
+
+
+</div>
+<!-- /.container-fluid -->
 @endsection

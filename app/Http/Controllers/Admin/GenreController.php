@@ -10,24 +10,10 @@ class GenreController extends Controller
 {
     public function list() {
         $data = [
-            'data' => Genre::get()
+            'data' => Genre::latest()->get()
         ];
 
         return view('admin.page.genre.list', $data);
-    }
-
-    public function read() {
-        if (request('id')) {
-            $genre = Genre::find(request('id'));
-        } else {
-            $genre = [];
-        };
-
-        $data = [
-            'data' => $genre,
-        ];
-
-        return view('admin.page.genre.read', $data);
     }
 
     public function add()
@@ -43,7 +29,7 @@ class GenreController extends Controller
         if (request('id')) {
             $genre = Genre::find(request('id'));
         } else {
-            $genre = [];
+            abort(404);
         };
 
         $data = [
@@ -68,7 +54,7 @@ class GenreController extends Controller
             'name' => request('name'),
         ]);
 
-        return redirect()->route('admin.genre.list');
+        return redirect()->route('admin.genre.list')->with('status', 'Genre created successfully');
     }
 
     public function update(Request $request)
@@ -88,7 +74,7 @@ class GenreController extends Controller
                 'name' => request('name')
             ]);
 
-        return redirect()->back();
+        return redirect()->route('admin.genre.list')->with('status', 'Genre updated successfully');
     }
 
     public function delete(Request $request) {
@@ -96,7 +82,7 @@ class GenreController extends Controller
             $data = Genre::find(request('id'));
             $data->delete();
             
-            return redirect()->route('admin.genre.list');
+            return redirect()->route('admin.genre.list')->with('status', 'Genre deleted successfully');
         } else {
             abort(404);
         };

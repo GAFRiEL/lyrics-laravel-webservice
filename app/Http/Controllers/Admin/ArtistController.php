@@ -10,24 +10,10 @@ class ArtistController extends Controller
 {
     public function list() {
         $data = [
-            'data' => Artist::get()
+            'data' => Artist::latest()->get()
         ];
 
         return view('admin.page.artist.list', $data);
-    }
-
-    public function read() {
-        if (request('id')) {
-            $artist = Artist::find(request('id'));
-        } else {
-            $artist = [];
-        };
-
-        $data = [
-            'data' => $artist,
-        ];
-
-        return view('admin.page.artist.read', $data);
     }
 
     public function add()
@@ -43,7 +29,7 @@ class ArtistController extends Controller
         if (request('id')) {
             $artist = Artist::find(request('id'));
         } else {
-            $artist = [];
+            abort(404);
         };
 
         $data = [
@@ -68,7 +54,7 @@ class ArtistController extends Controller
             'name' => request('name'),
         ]);
 
-        return redirect()->route('admin.artist.list');
+        return redirect()->route('admin.artist.list')->with('status', 'Artist created successfully');
     }
 
     public function update(Request $request)
@@ -88,7 +74,7 @@ class ArtistController extends Controller
                 'name' => request('name')
             ]);
 
-        return redirect()->back();
+        return redirect()->route('admin.artist.list')->with('status', 'Artist updated successfully');
     }
 
     public function delete(Request $request) {
@@ -96,7 +82,7 @@ class ArtistController extends Controller
             $data = Artist::find(request('id'));
             $data->delete();
             
-            return redirect()->route('admin.artist.list');
+            return redirect()->route('admin.artist.list')->with('status', 'Artist deleted successfully');
         } else {
             abort(404);
         };
