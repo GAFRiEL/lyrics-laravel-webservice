@@ -21,8 +21,8 @@ class CreateSongsTable extends Migration
             $table->bigInteger('genre_id')->unsigned()->index();
             $table->timestamps();
 
-            $table->foreign('album_id')->references('id')->on('albums');
-            $table->foreign('genre_id')->references('id')->on('genres');
+            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
