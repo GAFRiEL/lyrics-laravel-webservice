@@ -47,7 +47,10 @@
 
                         <option
                             value="{{ $album->id }}"
-                            {{ count($errors) > 0 ? $album->id == old('album_id')? 'selected' : '' : $album->id == $data->album_id  ? 'selected' : '' }}>
+                            @if ($album->id == $data->album_id)
+                                selected
+                            @endif
+                        >
                             {{ $album->name }}
                         </option>
 
@@ -71,7 +74,10 @@
 
                         <option
                             value="{{ $genre->id }}"
-                            {{ count($errors) > 0 ? $genre->id == old('genre_id')? 'selected' : '' : $genre->id == $data->genre_id  ? 'selected' : '' }}>
+                            @if ($genre->id == $data->genre_id)
+                                selected
+                            @endif
+                        >
                             {{ $genre->name }}
                         </option>
 
@@ -92,6 +98,7 @@
                 <button type="submit" class="btn btn-primary">save</button>
             </div>
             <div class="col-sm-6">
+                <a href="{{ route('admin.song.list') }}" class="btn btn-warning">back</a>
             </div>
         </div>
     </form>

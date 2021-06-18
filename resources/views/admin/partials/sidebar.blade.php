@@ -31,7 +31,7 @@
             <a class="collapse-item" href="{{ route('admin.genre.list') }}">Genre</a>
             <a class="collapse-item" href="{{ route('admin.artist.list') }}">Artist</a>
             <a class="collapse-item" href="{{ route('admin.album.list') }}">Album</a>
-            <a class="collapse-item" href="utilities-other.html">Song</a>
+            <a class="collapse-item" href="{{ route('admin.song.list') }}">Song</a>
           </div>
         </div>
       </li>

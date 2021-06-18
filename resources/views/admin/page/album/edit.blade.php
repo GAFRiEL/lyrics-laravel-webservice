@@ -4,7 +4,7 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <h1>Add Album</h1>
+    <h1>Edit Album</h1>
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -47,7 +47,10 @@
 
                         <option
                             value="{{ $artist->id }}"
-                            {{ count($errors) > 0 ? $artist->id == old('workunit')? 'selected' : '' : $artist->id == $data->artist_id  ? 'selected' : '' }}>
+                            @if ($artist->id == $data->artist_id)
+                                selected
+                            @endif
+                        >
                             {{ $artist->name }}
                         </option>
 
